@@ -1,0 +1,22 @@
+{% extends 'books/base.html' %}
+{% block title %}Book List{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Book List</h1>
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ book.image.url|default:'https://via.placeholder.com/150' }}" class="card-img-top" alt="{{ book.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">By {{ book.author }} - ${{ book.price }}</p>
+                    <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View</a>
+                    <a href="{% url 'add_to_cart' book.id %}" class="btn btn-success">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
