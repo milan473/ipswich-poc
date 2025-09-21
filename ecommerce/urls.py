@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from books.views import BookListView, BookDetailView, add_to_cart, cart_view
 from django_prometheus import exports
 
