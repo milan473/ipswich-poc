@@ -1,5 +1,7 @@
 {% extends 'books/base.html' %}
+{% load static %}
 {% block title %}Book List{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
     <h1>Book List</h1>
@@ -7,7 +9,14 @@
         {% for book in books %}
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ book.image.url|default:'https://via.placeholder.com/150' }}" class="card-img-top" alt="{{ book.title }}">
+                <img src="{% if forloop.counter == 1 %}
+                            {{ MEDIA_URL }}book1.jpg
+                          {% elif forloop.counter == 2 %}
+                            {{ MEDIA_URL }}book2.jpg
+                          {% else %}
+                            https://via.placeholder.com/150
+                          {% endif %}"
+                     class="card-img-top" alt="{{ book.title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ book.title }}</h5>
                     <p class="card-text">By {{ book.author }} - ${{ book.price }}</p>

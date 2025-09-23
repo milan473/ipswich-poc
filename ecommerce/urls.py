@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from books.views import BookListView, BookDetailView, add_to_cart, cart_view, buy_book, purchase_success
 from django_prometheus import exports
+from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -32,3 +33,5 @@ urlpatterns = [
     path('', include('django_prometheus.urls')),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
