@@ -16,8 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from books.views import BookListView, BookDetailView, add_to_cart, cart_view
+from books.views import BookListView, BookDetailView, add_to_cart, cart_view, buy_book, purchase_success
 from django_prometheus import exports
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('books/<int:pk>/', BookDetailView.as_view(), name='book_detail'),
     path('add_to_cart/<int:book_id>/', add_to_cart, name='add_to_cart'),
     path('cart/', cart_view, name='cart'),
+    path('buy/<int:book_id>/', buy_book, name='buy_book'),
+    path('purchase/success/', purchase_success, name='purchase_success'),
     path('', include('django_prometheus.urls')),
 ]
 

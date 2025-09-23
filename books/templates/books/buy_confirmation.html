@@ -1,0 +1,13 @@
+{% extends 'books/base.html' %}
+{% block title %}Confirm Purchase{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Confirm Purchase</h1>
+    <p>Are you sure you want to buy {{ book.title }} for ${{ book.price }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Confirm Purchase</button>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

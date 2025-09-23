@@ -3,27 +3,31 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Shopping Cart</h1>
-    {% if books %}
+    {% if cart_items %}
     <table class="table">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            {% for book in books %}
+            {% for item in cart_items %}
             <tr>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>${{ book.price }}</td>
+                <td>{{ item.book.title }}</td>
+                <td>{{ item.book.author }}</td>
+                <td>${{ item.book.price|floatformat:2 }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.line_total|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2"><strong>Total</strong></td>
+                <td colspan="4"><strong>Grand Total</strong></td>
                 <td><strong>${{ total|floatformat:2 }}</strong></td>
             </tr>
         </tfoot>
